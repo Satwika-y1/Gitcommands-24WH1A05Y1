@@ -3,41 +3,235 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Event Registration</title>
+    <title>Global Tech Summit 2026 - Registration</title>
     <style>
-        body { font-family: Arial, sans-serif; margin: 50px; background-color: #f4f4f4; }
-        form { background: white; padding: 20px; border-radius: 5px; max-width: 400px; margin: auto; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
-        input { width: 100%; padding: 10px; margin: 10px 0; box-sizing: border-box; }
-        button { width: 100%; padding: 10px; background: #28a745; color: white; border: none; cursor: pointer; }
+        :root {
+            --primary-color: #2563eb;
+            --success-color: #16a34a;
+            --error-color: #dc2626;
+            --background: #f8fafc;
+            --card-bg: #ffffff;
+            --text: #1e293b;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--background);
+            color: var(--text);
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .registration-card {
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .header h2 {
+            margin: 0;
+            color: #0f172a;
+            font-size: 28px;
+            font-weight: 700;
+        }
+
+        .header p {
+            color: #64748b;
+            margin-top: 8px;
+            font-size: 14px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 600;
+            font-size: 14px;
+            color: #475569;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            font-size: 15px;
+            box-sizing: border-box;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #1d4ed8;
+        }
+
+        button:disabled {
+            background-color: #94a3b8;
+            cursor: not-allowed;
+        }
+
+        #message {
+            margin-top: 20px;
+            padding: 12px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 500;
+            text-align: center;
+            display: none;
+        }
+
+        #message.success {
+            display: block;
+            background-color: #f0fdf4;
+            color: var(--success-color);
+            border: 1px solid #bbf7d0;
+        }
+
+        #message.error {
+            display: block;
+            background-color: #fef2f2;
+            color: var(--error-color);
+            border: 1px solid #fca5a5;
+        }
     </style>
 </head>
 <body>
 
-    <form id="regForm">
-        <h2>Event Registration</h2>
-        <input type="text" id="name" placeholder="Full Name" required>
-        <input type="email" id="email" placeholder="Email Address" required>
-        <button type="submit">Register</button>
-        <p id="message" style="margin-top:15px; font-weight:bold;"></p>
-    </form>
+    <div class="registration-card">
+        <div class="header">
+            <h2>Event Registration</h2>
+            <p>Secure your spot for the upcoming DevOps Summit</p>
+        </div>
+
+        <form id="regForm">
+            <div class="form-group">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" class="form-control" placeholder="John Doe" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" class="form-control" placeholder="john@example.com" required>
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" class="form-control" placeholder="+1 (555) 000-0000" required>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="ticketType">Ticket Pass</label>
+                    <select id="ticketType" class="form-control" required>
+                        <option value="standard">Standard Pass</option>
+                        <option value="vip">VIP Access</option>
+                        <option value="student">Student Pass</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="diet">Dietary Requirements</label>
+                    <select id="diet" class="form-control">
+                        <option value="none">None</option>
+                        <option value="vegetarian">Vegetarian</option>
+                        <option value="vegan">Vegan</option>
+                        <option value="gluten-free">Gluten Free</option>
+                    </select>
+                </div>
+            </div>
+
+            <button type="submit" id="submitBtn">Complete Registration</button>
+            <div id="message"></div>
+        </form>
+    </div>
 
     <script>
         document.getElementById('regForm').addEventListener('submit', async (e) => {
             e.preventDefault();
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
+            
+            const submitBtn = document.getElementById('submitBtn');
+            const msgDiv = document.getElementById('message');
+            
+            // Collect form properties dynamically
+            const payload = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                ticketType: document.getElementById('ticketType').value,
+                diet: document.getElementById('diet').value
+            };
 
-            // This script sends the form data directly to the server side
+            // Disable button during network communication
+            submitBtn.disabled = true;
+            submitBtn.innerText = "Processing...";
+            
+            msgDiv.className = '';
+            msgDiv.style.display = 'none';
+
             try {
                 const response = await fetch('http://localhost:3000/register', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ name, email })
+                    body: JSON.stringify(payload)
                 });
+                
                 const data = await response.json();
-                document.getElementById('message').innerText = data.message;
+
+                if (response.ok) {
+                    msgDiv.className = 'success';
+                    msgDiv.innerText = data.message || "Registration Successful!";
+                    document.getElementById('regForm').reset();
+                } else {
+                    msgDiv.className = 'error';
+                    msgDiv.innerText = data.message || "Server rejected registration.";
+                }
             } catch (err) {
-                document.getElementById('message').innerText = "Cannot connect to registration server.";
+                msgDiv.className = 'error';
+                msgDiv.innerText = "Network Error: Unable to establish connection to the backend microservice.";
+            } finally {
+                // Re-enable submission capability
+                submitBtn.disabled = false;
+                submitBtn.innerText = "Complete Registration";
             }
         });
     </script>
